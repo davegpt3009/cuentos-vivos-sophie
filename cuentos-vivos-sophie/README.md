@@ -54,13 +54,17 @@ cuentos-vivos-sophie/
 
 ### Frontend
 
-(Se completará en la Fase 3)
+Se añadió una pequeña interfaz estática en `frontend/` para probar la API.
+
+1. Inicia el backend con `npm run dev`.
+2. Abre `http://localhost:3001/` en tu navegador.
+3. Presiona **Generar Historia de Prueba** para ver un ejemplo.
 
 ## 📝 Estado del Desarrollo
 
 - ✅ Fase 1: Configuración del Backend
 - ✅ Fase 2: Lógica de IA en el Backend (COMPLETADO)
-- ⏳ Fase 3: Configuración del Frontend
+- ✅ Fase 3: Configuración del Frontend (Interfaz estática)
 - ⏳ Fase 4: Conexión Frontend-Backend
 - ⏳ Fase 5: Biblioteca de Cuentos
 

@@ -2,6 +2,7 @@
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
+const path = require('path');
 require('dotenv').config();
 
 // Importación de rutas
@@ -19,20 +20,18 @@ app.use(cors()); // Habilita CORS para todas las rutas
 app.use(express.json({ limit: '10mb' })); // Parser para JSON con límite de tamaño
 app.use(express.urlencoded({ extended: true })); // Parser para datos de formularios
 
+// Servir archivos estáticos del frontend
+app.use(express.static(path.join(__dirname, '../frontend')));
+
 // Middleware de logging básico
 app.use((req, res, next) => {
   console.log(`${new Date().toISOString()} - ${req.method} ${req.path}`);
   next();
 });
 
-// Ruta raíz - Mensaje de bienvenida
+// Ruta raíz - Interfaz del frontend
 app.get('/', (req, res) => {
-  res.json({
-    message: 'Servidor de Cuentos Vivos funcionando',
-    version: '1.0.0',
-    status: 'activo',
-    timestamp: new Date().toISOString()
-  });
+  res.sendFile(path.join(__dirname, '../frontend/index.html'));
 });
 
 // Ruta de salud del servidor
