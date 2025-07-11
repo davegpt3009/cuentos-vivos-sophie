@@ -20,7 +20,7 @@ Una aplicación web interactiva que genera cuentos personalizados para Sophie us
 ## 📁 Estructura del Proyecto
 
 ```
-cuentos-vivos-sophie/
+.
 ├── backend/          # Servidor Node.js/Express
 ├── frontend/         # Aplicación React
 └── README.md         # Este archivo
