@@ -54,17 +54,31 @@ cuentos-vivos-sophie/
 
 ### Frontend
 
-Se añadió una pequeña interfaz estática en `frontend/` para probar la API.
+La interfaz se desarrolla con React, Vite y Tailwind CSS. Para ponerla en
+funcionamiento sigue estos pasos:
 
-1. Inicia el backend con `npm run dev`.
-2. Abre `http://localhost:3001/` en tu navegador.
-3. Presiona **Generar Historia de Prueba** para ver un ejemplo.
+1. Instala las dependencias:
+   ```bash
+   cd frontend
+   npm install
+   ```
+
+2. Inicia el servidor de desarrollo:
+   ```bash
+   npm run dev
+   ```
+   Esto abrirá la aplicación en `http://localhost:5173/`.
+
+3. Para generar una versión lista para producción ejecuta:
+   ```bash
+   npm run build
+   ```
 
 ## 📝 Estado del Desarrollo
 
 - ✅ Fase 1: Configuración del Backend
 - ✅ Fase 2: Lógica de IA en el Backend (COMPLETADO)
-- ✅ Fase 3: Configuración del Frontend (Interfaz estática)
+- ✅ Fase 3: Configuración del Frontend (React + Tailwind)
 - ⏳ Fase 4: Conexión Frontend-Backend
 - ⏳ Fase 5: Biblioteca de Cuentos
 
