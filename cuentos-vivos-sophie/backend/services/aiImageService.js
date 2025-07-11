@@ -20,10 +20,16 @@ class AIImageService {
   async generateImage(prompt) {
     try {
       console.log('🎨 Generando imagen con DALL-E...');
-      
+
       // Mejorar el prompt para obtener mejores resultados
       const enhancedPrompt = this.enhancePromptForChildren(prompt);
-      
+
+      // Validar que el prompt sea apropiado para niños antes de enviarlo a OpenAI
+      if (!this.validatePromptForChildren(enhancedPrompt)) {
+        console.warn('⚠️ Prompt no apto para niños, usando imagen por defecto');
+        return this.getDefaultImage();
+      }
+
       // Realizar la llamada a DALL-E
       const response = await this.openai.images.generate({
         model: this.model,
@@ -129,7 +135,13 @@ class AIImageService {
   async generateMultipleImages(prompt, count = 2) {
     try {
       const enhancedPrompt = this.enhancePromptForChildren(prompt);
-      
+
+      // Validar que el prompt sea apropiado para niños
+      if (!this.validatePromptForChildren(enhancedPrompt)) {
+        console.warn('⚠️ Prompt no apto para niños, usando imagen por defecto');
+        return [this.getDefaultImage()];
+      }
+
       const response = await this.openai.images.generate({
         model: this.model,
         prompt: enhancedPrompt,
