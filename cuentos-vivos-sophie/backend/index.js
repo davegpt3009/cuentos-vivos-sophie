@@ -63,12 +63,14 @@ app.use((error, req, res, next) => {
   });
 });
 
-// Iniciar el servidor
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`🚀 Servidor de Cuentos Vivos iniciado en puerto ${PORT}`);
-  console.log(`📖 Accede a http://localhost:${PORT} para verificar el estado`);
-  console.log(`🌟 ¡Listo para crear cuentos mágicos para Sophie!`);
-});
+// Iniciar el servidor solo si no estamos en entorno de pruebas
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(PORT, '0.0.0.0', () => {
+    console.log(`🚀 Servidor de Cuentos Vivos iniciado en puerto ${PORT}`);
+    console.log(`📖 Accede a http://localhost:${PORT} para verificar el estado`);
+    console.log(`🌟 ¡Listo para crear cuentos mágicos para Sophie!`);
+  });
+}
 
 // Manejo graceful de cierre del servidor
 process.on('SIGTERM', () => {
@@ -80,4 +82,7 @@ process.on('SIGINT', () => {
   console.log('🛑 Cerrando servidor de Cuentos Vivos...');
   process.exit(0);
 });
+
+// Exportar la aplicación para pruebas
+module.exports = app;
 
