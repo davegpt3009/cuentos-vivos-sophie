@@ -73,14 +73,15 @@ funcionamiento sigue estos pasos:
    ```bash
    npm run build
    ```
+4. Asegúrate de tener el backend en marcha con `npm run dev` dentro de la carpeta `backend`.
 
 ## 📝 Estado del Desarrollo
 
 - ✅ Fase 1: Configuración del Backend
 - ✅ Fase 2: Lógica de IA en el Backend (COMPLETADO)
 - ✅ Fase 3: Configuración del Frontend (React + Tailwind)
-- ⏳ Fase 4: Conexión Frontend-Backend
-- ⏳ Fase 5: Biblioteca de Cuentos
+- ✅ Fase 4: Conexión Frontend-Backend
+- ✅ Fase 5: Biblioteca de Cuentos
 
 ## 🔧 API Endpoints
 
