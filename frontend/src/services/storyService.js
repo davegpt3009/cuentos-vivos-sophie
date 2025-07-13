@@ -1,10 +1,14 @@
 const BASE_URL = '/api'
 
-export async function generateStoryPart(storyHistory = [], userChoices = {}) {
+export async function generateStoryPart(
+  storyHistory = [],
+  userChoices = {},
+  withAudio = true
+) {
   const res = await fetch(`${BASE_URL}/generate-story-part`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ storyHistory, userChoices }),
+    body: JSON.stringify({ storyHistory, userChoices, withAudio }),
   })
   if (!res.ok) {
     throw new Error('Error generating story')

@@ -9,6 +9,7 @@ Una aplicación web interactiva que genera cuentos personalizados para Sophie us
 - Interfaz amigable para niños
 - Biblioteca personal de cuentos guardados
 - Experiencia completamente personalizada
+- Narración en tiempo real usando Text-to-Speech
 
 ## 🛠️ Tecnologías
 
@@ -16,6 +17,7 @@ Una aplicación web interactiva que genera cuentos personalizados para Sophie us
 - **Frontend**: React + Vite + Tailwind CSS
 - **IA de Texto**: OpenAI GPT-4 / Google Gemini
 - **IA de Imágenes**: DALL-E 3
+- **IA de Narración**: OpenAI Text-to-Speech
 
 ## 📁 Estructura del Proyecto
 
@@ -45,7 +47,9 @@ Una aplicación web interactiva que genera cuentos personalizados para Sophie us
    cp .env.example .env
    ```
 
-4. Edita el archivo `.env` con tus claves de API
+4. Edita el archivo `.env` con tus claves de API. Necesitarás:
+   - `OPENAI_API_KEY` para texto e imágenes
+   - Opcionalmente activa `ENABLE_TTS=true` para generación de audio y ajusta `TTS_MODEL` y `TTS_VOICE`
 
 5. Inicia el servidor:
    ```bash

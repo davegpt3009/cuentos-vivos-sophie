@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { generateStoryPart } from '../services/storyService'
+import { playBase64Audio } from '../services/audioService'
 
 function StoryGenerator() {
   const [history, setHistory] = useState([])
@@ -16,12 +17,15 @@ function StoryGenerator() {
   const handleGenerate = async () => {
     setLoading(true)
     try {
-      const res = await generateStoryPart(history)
+      const res = await generateStoryPart(history, {}, true)
       if (res.success) {
         const newHistory = [...history, { role: 'assistant', content: res.storyPart }]
         setHistory(newHistory)
         setStory(res.storyPart)
         setImage(res.imageUrl)
+        if (res.audioBase64) {
+          playBase64Audio(res.audioBase64)
+        }
         saveToLibrary(newHistory, res.imageUrl)
       } else {
         setStory(res.error || 'No se pudo generar la historia')
