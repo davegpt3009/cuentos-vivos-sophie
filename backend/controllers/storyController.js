@@ -1,12 +1,14 @@
 // Controlador para manejar las operaciones relacionadas con la generación de historias
 const AITextService = require('../services/aiTextService');
 const AIImageService = require('../services/aiImageService');
+const TTSServices = require('../services/ttsService');
 
 class StoryController {
   constructor() {
     // Inicializar servicios de IA
     this.aiTextService = new AITextService();
     this.aiImageService = new AIImageService();
+    this.ttsService = new TTSServices();
   }
 
   /**
@@ -44,11 +46,20 @@ class StoryController {
       console.log('🖼️ Generando imagen...');
       const imageUrl = await this.aiImageService.generateImage(imagePrompt);
 
-      // Paso 4: Preparar respuesta exitosa
+      // Paso 4: Generar audio usando TTS si se solicita
+      let audioBase64 = null;
+      const withAudio = req.body.withAudio || process.env.ENABLE_TTS === 'true';
+      if (withAudio) {
+        console.log('🔊 Generando narración de audio...');
+        audioBase64 = await this.ttsService.generateSpeech(storyPart);
+      }
+
+      // Paso 5: Preparar respuesta exitosa
       const response = {
         success: true,
         storyPart: storyPart,
         imageUrl: imageUrl,
+        audioBase64,
         metadata: {
           timestamp: new Date().toISOString(),
           wordCount: storyPart.split(' ').length,
