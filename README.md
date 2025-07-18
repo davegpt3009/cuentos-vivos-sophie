@@ -77,7 +77,19 @@ funcionamiento sigue estos pasos:
    ```bash
    npm run build
    ```
-4. Asegúrate de tener el backend en marcha con `npm run dev` dentro de la carpeta `backend`.
+4. Asegúrate de tener el backend en marcha con `npm start` dentro de la carpeta `backend`.
+
+### Despliegue en Producción
+
+Para publicar la aplicación (por ejemplo en [Render](https://render.com)) primero genera el frontend y luego inicia el servidor:
+
+```bash
+cd frontend
+npm run build
+cd ../backend
+npm start
+```
+El servidor Express servirá automáticamente los archivos estáticos desde `frontend/dist`.
 
 ## 📝 Estado del Desarrollo
 
