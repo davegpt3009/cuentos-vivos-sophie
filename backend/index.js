@@ -20,8 +20,16 @@ app.use(cors()); // Habilita CORS para todas las rutas
 app.use(express.json({ limit: '10mb' })); // Parser para JSON con límite de tamaño
 app.use(express.urlencoded({ extended: true })); // Parser para datos de formularios
 
-// Servir archivos estáticos del frontend
-app.use(express.static(path.join(__dirname, '../frontend')));
+const fs = require('fs');
+
+// Servir archivos estáticos del frontend compilado
+const distPath = path.join(__dirname, '../frontend/dist');
+if (fs.existsSync(distPath)) {
+  app.use(express.static(distPath));
+} else {
+  // Fallback para entorno de desarrollo
+  app.use(express.static(path.join(__dirname, '../frontend')));
+}
 
 // Middleware de logging básico
 app.use((req, res, next) => {
@@ -31,7 +39,11 @@ app.use((req, res, next) => {
 
 // Ruta raíz - Interfaz del frontend
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/index.html'));
+  if (fs.existsSync(distPath)) {
+    res.sendFile(path.join(distPath, 'index.html'));
+  } else {
+    res.sendFile(path.join(__dirname, '../frontend/index.html'));
+  }
 });
 
 // Ruta de salud del servidor
