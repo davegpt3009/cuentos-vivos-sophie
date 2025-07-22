@@ -81,14 +81,20 @@ funcionamiento sigue estos pasos:
 
 ### Despliegue en Producción
 
-Para publicar la aplicación (por ejemplo en [Render](https://render.com)) primero genera el frontend y luego inicia el servidor:
+Para publicar la aplicación (por ejemplo en [Render](https://render.com)) puedes usar el script `render-build.sh` incluido en este repositorio. Este script instala las dependencias de **backend** y **frontend** y luego compila la interfaz. Su contenido es:
 
 ```bash
-cd frontend
-npm run build
-cd ../backend
-npm start
+npm install --prefix backend
+npm install --prefix frontend
+npm run build --prefix frontend
 ```
+
+En Render configúralo como comando de _build_ o ejecútalo manualmente. Para iniciar la aplicación en producción usa:
+
+```bash
+npm start --prefix backend
+```
+
 El servidor Express servirá automáticamente los archivos estáticos desde `frontend/dist`.
 
 ## 📝 Estado del Desarrollo
